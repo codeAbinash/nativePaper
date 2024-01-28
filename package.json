@@ -1,0 +1,58 @@
+{
+  "name": "nativePaper",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android --active-arch-only",
+    "ios": "react-native run-ios",
+    "lint": "eslint .",
+    "start": "react-native start",
+    "test": "jest",
+    "build": "cd android && gradlew assembleRelease",
+    "bundle": "cd android && gradlew bundleRelease",
+    "clean": "cd android && gradlew clean",
+    "install-apk": "adb install -r android/app/build/outputs/apk/debug/app-arm64-v8a-debug.apk",
+    "install-release-apk": "adb install -r android/app/build/outputs/apk/release/app-arm64-v8a-release.apk",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.11",
+    "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/native-stack": "^6.9.12",
+    "color": "^4.2.3",
+    "ironsource-mediation": "^1.0.0",
+    "react": "18.2.0",
+    "react-native": "0.71.4",
+    "react-native-device-info": "^10.4.0",
+    "react-native-paper": "^5.12.3",
+    "react-native-safe-area-context": "^4.8.2",
+    "react-native-screens": "^3.20.0",
+    "react-native-vector-icons": "^10.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@faker-js/faker": "^8.4.0",
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/color": "^3.0.6",
+    "@types/jest": "^29.2.1",
+    "@types/react": "^18.0.24",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-jest": "^29.2.1",
+    "eslint": "^8.19.0",
+    "jest": "^29.2.1",
+    "metro-react-native-babel-preset": "0.73.8",
+    "prettier": "^3.1.0",
+    "react-test-renderer": "18.2.0",
+    "typescript": "4.8.4",
+    "prettier-plugin-tailwindcss": "^0.5.7"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
