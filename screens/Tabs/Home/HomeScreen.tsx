@@ -8,13 +8,13 @@ import {
   Tooltip,
   TouchableRipple,
 } from "react-native-paper";
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { LightTheme } from "../../../theme/LightTheme";
 import EndText from "../../EndText";
 
 const { width, height } = Dimensions.get("window");
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: { navigation: any }) => {
   return (
     <>
       <Appbar.Header>
@@ -23,40 +23,40 @@ const HomeScreen = () => {
           <Appbar.Action
             style={{ margin: 3 }}
             icon="camera"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </Tooltip>
         <Tooltip title="Search">
           <Appbar.Action
             style={{ margin: 3 }}
             icon="magnify"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </Tooltip>
         <Tooltip title="More options">
           <Appbar.Action
             style={{ margin: 3 }}
             icon="dots-vertical"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </Tooltip>
       </Appbar.Header>
       <ScrollView
         style={{
-          backgroundColor: LightTheme.colors.background,
           flexGrow: 1,
           display: "flex",
         }}
       >
         <View
           style={{
-            backgroundColor: LightTheme.colors.background,
+            backgroundColor: 'white',
+            // backgroundColor: LightTheme.colors.background,
             flexGrow: 1,
             display: "flex",
           }}
         >
           {Array.from(Array(20).keys()).map((item) => (
-            <Chat key={item} value={item} />
+            <Chat key={item} value={item} navigation={navigation} />
           ))}
         </View>
 
@@ -76,12 +76,14 @@ const HomeScreen = () => {
   );
 };
 
-function Chat({ value }: { value: number }) {
+function Chat({ value, navigation }: { value: number, navigation: any }) {
   const isNewMessage = faker.datatype.boolean();
+  const isDelivered = faker.datatype.boolean();
+  const isRead = faker.datatype.boolean();
 
   return (
     <TouchableRipple
-      onPress={() => console.log("Pressed")}
+      onPress={() => navigation.navigate("Chat")}
       rippleColor="#00000015"
     >
       <View
@@ -126,11 +128,13 @@ function Chat({ value }: { value: number }) {
                 overflow: "hidden",
               }}
             >
-              <Icon name="check" color={"gray"} size={17} />
-              {/* <Icon name='sticker' color={'gray'} size={17} /> */}
+              {isNewMessage ? null :
+                isDelivered ? <Icon name='check' size={16} color='gray' /> :
+                  <Icon name='check-all' size={16} color={!isRead ? `gray` : 'dodgerblue'} />
+              }
               <Text
                 numberOfLines={1}
-                style={{ color: "gray", maxWidth: width * 0.5 }}
+                style={{ color: "gray", maxWidth: width * 0.5, paddingLeft: 3 }}
               >
                 {faker.lorem.paragraph({ min: 1, max: 1 })}
               </Text>

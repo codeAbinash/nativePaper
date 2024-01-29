@@ -7,6 +7,7 @@ import { enableScreens } from "react-native-screens";
 import Home from "./screens/Home";
 import { LightTheme } from "./theme/LightTheme";
 import Update from "./screens/Update";
+import Chat from "./screens/Chat";
 
 enableScreens();
 
@@ -30,7 +31,20 @@ const App = () => {
             <Stack.Screen
               name="Update"
               component={Update}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false, presentation: 'modal',
+                animationTypeForReplace: 'push',
+                animation: 'fade_from_bottom',
+              }}
+            />
+            <Stack.Screen
+              name="Chat"
+              component={Chat}
+              options={{
+                headerShown: false, presentation: 'modal',
+                animationTypeForReplace: 'push',
+                animation: 'fade_from_bottom',
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>

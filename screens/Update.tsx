@@ -6,11 +6,7 @@ export default function Update({ navigation }: { navigation: any }) {
   return (
     <>
       <Appbar.Header>
-        <Appbar.BackAction
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title="Card Images" />
       </Appbar.Header>
       <ScrollView
