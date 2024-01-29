@@ -1,10 +1,10 @@
-import color from "color";
+import color from 'color'
 
-import { MD3Colors, tokens } from "./tokens";
-import type { MD3Theme } from "./types";
-import { configureFonts } from "react-native-paper";
+import { configureFonts } from 'react-native-paper'
+import { MD3Colors, tokens } from './tokens'
+import type { MD3Theme } from './types'
 
-const { palette, opacity } = tokens.md.ref;
+const { palette, opacity } = tokens.md.ref
 
 export const LightTheme: MD3Theme = {
   dark: false,
@@ -20,10 +20,7 @@ export const LightTheme: MD3Theme = {
     tertiaryContainer: palette.tertiary90,
     surface: palette.neutral99,
     surfaceVariant: palette.neutralVariant90,
-    surfaceDisabled: color(palette.neutral10)
-      .alpha(opacity.level2)
-      .rgb()
-      .string(),
+    surfaceDisabled: color(palette.neutral10).alpha(opacity.level2).rgb().string(),
     background: palette.neutral99,
     error: palette.error40,
     errorContainer: palette.error90,
@@ -35,10 +32,7 @@ export const LightTheme: MD3Theme = {
     onTertiaryContainer: palette.tertiary10,
     onSurface: palette.neutral10,
     onSurfaceVariant: palette.neutralVariant30,
-    onSurfaceDisabled: color(palette.neutral10)
-      .alpha(opacity.level4)
-      .rgb()
-      .string(),
+    onSurfaceDisabled: color(palette.neutral10).alpha(opacity.level4).rgb().string(),
     onError: palette.error100,
     onErrorContainer: palette.error10,
     onBackground: palette.neutral10,
@@ -51,19 +45,19 @@ export const LightTheme: MD3Theme = {
     scrim: palette.neutral0,
     backdrop: color(MD3Colors.neutralVariant20).alpha(0.4).rgb().string(),
     elevation: {
-      level0: "transparent",
+      level0: 'transparent',
       // Note: Color values with transparency cause RN to transfer shadows to children nodes
       // instead of View component in Surface. Providing solid background fixes the issue.
       // Opaque color values generated with `palette.primary99` used as background
-      level1: "rgb(247, 243, 249)", // palette.primary40, alpha 0.05
-      level2: "rgb(243, 237, 246)", // palette.primary40, alpha 0.08
-      level3: "rgb(238, 232, 244)", // palette.primary40, alpha 0.11
-      level4: "rgb(236, 230, 243)", // palette.primary40, alpha 0.12
-      level5: "rgb(233, 227, 241)", // palette.primary40, alpha 0.14
+      level1: 'rgb(247, 243, 249)', // palette.primary40, alpha 0.05
+      level2: 'rgb(243, 237, 246)', // palette.primary40, alpha 0.08
+      level3: 'rgb(238, 232, 244)', // palette.primary40, alpha 0.11
+      level4: 'rgb(236, 230, 243)', // palette.primary40, alpha 0.12
+      level5: 'rgb(233, 227, 241)', // palette.primary40, alpha 0.14
     },
   },
   fonts: configureFonts(),
   animation: {
     scale: 1.0,
   },
-};
+}

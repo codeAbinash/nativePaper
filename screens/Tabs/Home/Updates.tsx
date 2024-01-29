@@ -1,97 +1,76 @@
-import React from "react";
-import { ScrollView, Text, View } from "react-native";
-import {
-  Appbar,
-  Button,
-  Checkbox,
-  FAB,
-  Searchbar,
-  TextInput,
-} from "react-native-paper";
-import { LightTheme } from "../../../theme/LightTheme";
-import EndText from "../../EndText";
+import React from 'react'
+import { ScrollView, Text, View } from 'react-native'
+import { Appbar, Button, Checkbox, FAB, Searchbar, TextInput, useTheme } from 'react-native-paper'
+import EndText from '../../EndText'
 const CheckBox = () => {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(false)
 
   return (
     <View
       style={{
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: 'row',
+        alignItems: 'center',
         marginTop: 20,
       }}
     >
       <Checkbox
-        status={checked ? "checked" : "unchecked"}
+        status={checked ? 'checked' : 'unchecked'}
         onPress={() => {
-          setChecked(!checked);
+          setChecked(!checked)
         }}
       />
-      <Text style={{ fontSize: 16, marginLeft: 10 }}>
-        Use less data for calls
-      </Text>
+      <Text style={{ fontSize: 16, marginLeft: 10 }}>Use less data for calls</Text>
     </View>
-  );
-};
+  )
+}
 
 export default function Updates({ navigation }: { navigation: any }) {
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState('')
+
+  const theme = useTheme()
 
   return (
     <>
       <Appbar.Header>
-        <Appbar.Content title="Updates" />
-        <Appbar.Action
-          style={{ margin: 3 }}
-          icon="dots-vertical"
-          onPress={() => {}}
-        />
+        <Appbar.Content title='Updates' />
+        <Appbar.Action style={{ margin: 3 }} icon='dots-vertical' onPress={() => {}} />
       </Appbar.Header>
       <ScrollView
         style={{
-          backgroundColor: LightTheme.colors.background,
+          backgroundColor: theme.colors.background,
           flexGrow: 1,
-          display: "flex",
+          display: 'flex',
         }}
       >
         <View
           style={{
-            backgroundColor: LightTheme.colors.background,
+            backgroundColor: theme.colors.background,
             flexGrow: 1,
-            display: "flex",
+            display: 'flex',
             paddingLeft: 15,
             paddingRight: 15,
           }}
         >
-          <Searchbar
-            placeholder="Search"
-            onChangeText={(query) => setSearchQuery(query)}
-            value={searchQuery}
-          />
+          <Searchbar placeholder='Search' onChangeText={(query) => setSearchQuery(query)} value={searchQuery} />
           <CheckBox />
-          <TextInput
-            mode="outlined"
-            label="Outlined input"
-            placeholder="Type something"
-            right={<TextInput.Affix text="/100" />}
-          />
+          <TextInput mode='outlined' label='Outlined input' placeholder='Type something' right={<TextInput.Affix text='/100' />} />
         </View>
         <View
           style={{
             paddingBottom: 100,
             paddingTop: 100,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            flexWrap: "wrap",
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            flexWrap: 'wrap',
           }}
         >
           <Button
-            icon="gesture-tap"
-            mode="contained"
+            icon='gesture-tap'
+            mode='contained'
             onPress={() => {
               // Go to the update screen
-              navigation.navigate("Update");
+              navigation.navigate('Update')
             }}
           >
             See images
@@ -102,27 +81,27 @@ export default function Updates({ navigation }: { navigation: any }) {
       </ScrollView>
 
       <FAB
-        icon="pencil"
-        size="small"
+        icon='pencil'
+        size='small'
         style={{
-          position: "absolute",
+          position: 'absolute',
           margin: 30,
           marginBottom: 95,
           right: 0,
           bottom: 0,
         }}
-        onPress={() => console.log("Pressed")}
+        onPress={() => console.log('Pressed')}
       />
       <FAB
-        icon="camera"
+        icon='camera'
         style={{
-          position: "absolute",
+          position: 'absolute',
           margin: 20,
           right: 0,
           bottom: 0,
         }}
-        onPress={() => console.log("Pressed")}
+        onPress={() => console.log('Pressed')}
       />
     </>
-  );
+  )
 }
