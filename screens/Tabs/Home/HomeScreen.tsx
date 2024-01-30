@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import React from 'react'
 import { Dimensions, ScrollView, Text, View } from 'react-native'
-import { Appbar, Avatar, Button, Divider, FAB, Menu, Tooltip, TouchableRipple, useTheme } from 'react-native-paper'
+import { Appbar, Avatar, FAB, Tooltip, TouchableRipple, useTheme } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EndText from '../../EndText'
 
@@ -9,11 +9,6 @@ const { width, height } = Dimensions.get('window')
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
   const theme = useTheme()
-  const [visible, setVisible] = React.useState(false)
-
-  const openMenu = () => setVisible(true)
-
-  const closeMenu = () => setVisible(false)
   return (
     <>
       <Appbar.Header>
@@ -33,6 +28,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           flexGrow: 1,
           display: 'flex',
           backgroundColor: theme.colors.surface,
+          // backgroundColor: theme.dark ? theme.colors.surface : 'white',
         }}
       >
         <View style={{ flexGrow: 1, display: 'flex' }}>

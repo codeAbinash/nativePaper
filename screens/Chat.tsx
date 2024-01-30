@@ -1,14 +1,19 @@
-import { fa, faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 import React, { useEffect, useRef } from 'react'
-import { Appearance, ScrollView, TouchableOpacity, View, Image, ImageBackground } from 'react-native'
-import { Appbar, Avatar, Button, Card, Divider, IconButton, Menu, Text, useTheme } from 'react-native-paper'
+import { Image, ImageBackground, ScrollView, View } from 'react-native'
+import { Appbar, Avatar, IconButton, Text, TouchableRipple, useTheme } from 'react-native-paper'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { PixelRatio } from 'react-native'
+function pxToDp(px: number) {
+  return PixelRatio.roundToNearestPixel(px)
+}
 
 const wallpaper = require('../assets/wallpaper.png')
 const wallpaper_dark = require('../assets/wallpaper-dark.png')
 
-const BOTTOM_APPBAR_HEIGHT = 60
+const BOTTOM_APPBAR_HEIGHT = 62
 
 export default function Chat({ navigation }: { navigation: any }) {
   const theme = useTheme()
@@ -34,8 +39,7 @@ export default function Chat({ navigation }: { navigation: any }) {
           source={theme.dark ? wallpaper_dark : wallpaper}
           resizeMode='cover'
           style={{
-            backgroundColor: theme.dark ? theme.colors.surface : theme.colors.onSecondary,
-            // backgroundColor: theme.colors.surface,
+            backgroundColor: theme.dark ? theme.colors.surface : theme.colors.elevation.level2,
           }}
         >
           <ChatArea />
@@ -51,26 +55,25 @@ export default function Chat({ navigation }: { navigation: any }) {
           },
           {
             height: BOTTOM_APPBAR_HEIGHT + bottom,
-            backgroundColor: theme.colors.background,
+            backgroundColor: 'transparent',
           },
         ]}
         safeAreaInsets={{ bottom }}
       >
         <View
           style={{
-            backgroundColor: theme.colors.background,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
             flex: 1,
             paddingHorizontal: 10,
-            paddingTop: 7,
+            paddingTop: 5,
           }}
         >
           <View
             style={{
-              backgroundColor: theme.colors.elevation.level2,
+              backgroundColor: theme.dark ? theme.colors.elevation.level2 : 'white',
               flex: 1,
               display: 'flex',
               flexDirection: 'row',
@@ -80,6 +83,7 @@ export default function Chat({ navigation }: { navigation: any }) {
               paddingRight: 10,
               paddingLeft: 4,
               paddingVertical: 4,
+              elevation: theme.dark ? 0 : 1.5,
             }}
           >
             <IconButton
@@ -138,42 +142,77 @@ export default function Chat({ navigation }: { navigation: any }) {
 
 function ChatArea() {
   const scrollViewRef = useRef<ScrollView>(null)
-
-  useEffect(() => {
-    scrollViewRef.current?.scrollToEnd({ animated: false })
-  }, [scrollViewRef.current])
+  const bottom = useSafeAreaInsets().bottom
+  // useEffect(() => {
+  //   scrollViewRef.current?.scrollToEnd({ animated: false })
+  // }, [scrollViewRef.current])
   return (
-    <ScrollView ref={scrollViewRef}>
-      <View style={{ padding: 15, paddingBottom: BOTTOM_APPBAR_HEIGHT + 20 }}>
+    <ScrollView
+      ref={scrollViewRef}
+      style={{
+        marginBottom: BOTTOM_APPBAR_HEIGHT + bottom - 5,
+      }}
+    >
+      <View style={{ padding: 15 }}>
         <ChatBubble message={faker.lorem.sentence()} isMe={true} />
+        <ChatBubble
+          message={faker.lorem.paragraph(2)}
+          isMe={false}
+          image={
+            'https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=2048x2048&w=is&k=20&c=Xa_wH_pZFMWNX8EPtufv9KSvS1OzUPus7C0Br2ZIMDg='
+          }
+        />
+        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
+        <ChatBubble message={faker.lorem.sentence()} isMe={false} />
+        <ChatBubble
+          message={faker.lorem.paragraph(2)}
+          isMe={true}
+          image={'https://i.pinimg.com/564x/43/db/46/43db4682a57bbddf864719d9403919eb.jpg'}
+        />
+        <ChatBubble message={faker.lorem.sentence()} isMe={false} />
+        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
+
+        <ChatBubble
+          message={faker.lorem.paragraph(2)}
+          isMe={false}
+          image={
+            'https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww'
+          }
+        />
+        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
+        <ChatBubble
+          message={faker.lorem.paragraph(2)}
+          isMe={true}
+          image={
+            'https://images.unsplash.com/photo-1618588507085-c79565432917?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww'
+          }
+        />
         <ChatBubble message={faker.lorem.sentence()} isMe={false} />
         <ChatBubble message={faker.lorem.sentence()} isMe={true} />
         <ChatBubble message={faker.lorem.sentence()} isMe={false} />
-        <ImageChatBubble message={faker.lorem.paragraph(2)} isMe={false} image={'https://picsum.photos/650'} />
         <ChatBubble message={faker.lorem.sentence()} isMe={true} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={false} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={false} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
-        <ImageChatBubble message={faker.lorem.paragraph(2)} isMe={true} image={'https://picsum.photos/652'} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={false} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={false} />
-        <ChatBubble message={faker.lorem.sentence()} isMe={true} />
-        <ImageChatBubble message={faker.lorem.paragraph(2)} isMe={true} image={'https://picsum.photos/709'} />
-        {/* <ChatBubble message={faker.lorem.sentence()} isMe={false} /> */}
-        <ImageChatBubble message={faker.lorem.paragraph(2)} isMe={false} image={'https://picsum.photos/701'} />
-        {/* <ChatBubble message={faker.lorem.sentence()} isMe={true} /> */}
-        {/* <ChatBubble message={faker.lorem.sentence()} isMe={false} /> */}
-        {/* <ChatBubble message={faker.lorem.paragraph({ max: 2, min: 2 })} isMe={false} /> */}
+        <ChatBubble
+          message={faker.lorem.paragraph(2)}
+          isMe={true}
+          image={
+            'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww'
+          }
+        />
+        <ChatBubble
+          message={faker.lorem.paragraph(2)}
+          isMe={false}
+          image={
+            'https://plus.unsplash.com/premium_photo-1675873580166-d10240a7cb7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D'
+          }
+        />
         <ChatBubble message={'Ok thik ache 👍🏻'} isMe={true} />
-        {/* <ChatBubble message={faker.lorem.paragraph()} isMe={false} /> */}
+        <ChatBubble message={'Hmm'} isMe={false} />
       </View>
     </ScrollView>
   )
 }
 
-function ChatBubble({ message, isMe }: { message: string; isMe: boolean }) {
+function ChatBubble({ message, isMe, image }: { message: string; isMe: boolean; isImage?: boolean; image?: string }) {
   const theme = useTheme()
   return (
     <View
@@ -193,25 +232,54 @@ function ChatBubble({ message, isMe }: { message: string; isMe: boolean }) {
           })}
         />
       )}
-      <TouchableOpacity
-        activeOpacity={isMe ? 0.9 : 0.6}
+      <View
         style={{
-          backgroundColor: isMe ? theme.colors.primary : theme.colors.elevation.level3,
+          backgroundColor: isMe ? theme.colors.primary : theme.dark ? theme.colors.elevation.level2 : 'white',
           borderRadius: 15,
-          paddingHorizontal: 13,
-          paddingVertical: 10,
           maxWidth: '70%',
+          overflow: 'hidden',
         }}
       >
-        <Text
-          style={{
-            color: isMe ? theme.colors.onPrimary : theme.colors.onBackground,
-            fontSize: 15.5,
-          }}
-        >
-          {message}
-        </Text>
-      </TouchableOpacity>
+        {image ? (
+          <TouchableRipple
+            onPress={() => {}}
+            rippleColor={isMe || !theme.dark ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.1)'}
+            onPressIn={() => {}}
+            style={{ paddingHorizontal: 4, paddingVertical: 4 }}
+          >
+            <View style={{ padding: 0 }}>
+              <DynamicImage image={image} />
+              <Text
+                style={{
+                  color: isMe ? theme.colors.onPrimary : theme.colors.onBackground,
+                  fontSize: 15.5,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                }}
+              >
+                {message}
+              </Text>
+            </View>
+          </TouchableRipple>
+        ) : (
+          <TouchableRipple
+            onPress={() => {}}
+            rippleColor={isMe || !theme.dark ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.1)'}
+            onPressIn={() => {}}
+            style={{ paddingHorizontal: 13, paddingVertical: 10 }}
+          >
+            <Text
+              style={{
+                color: isMe ? theme.colors.onPrimary : theme.colors.onBackground,
+                fontSize: 15.5,
+              }}
+            >
+              {message}
+            </Text>
+          </TouchableRipple>
+        )}
+      </View>
+
       {!isMe && (
         <Time
           time={faker.date.recent().toLocaleTimeString('en-US', {
@@ -225,58 +293,26 @@ function ChatBubble({ message, isMe }: { message: string; isMe: boolean }) {
   )
 }
 
-function ImageChatBubble({ message, isMe, image }: { message: string; isMe: boolean; image: string }) {
-  const theme = useTheme()
+function DynamicImage({ image }: { image: string }) {
+  const [h, setH] = React.useState(0)
+
+  useEffect(() => {
+    Image.getSize(image, (_, height) => {
+      setH(pxToDp(height))
+    })
+  }, [image])
+
   return (
-    <View
+    <Image
+      source={{ uri: image }}
       style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: isMe ? 'flex-end' : 'flex-start',
-        marginVertical: 5,
-        width: '100%',
+        width: 10000, // Set to a large value
+        maxWidth: '100%', // But this will be the actual width
+        height: h > 230 ? 230 : h < 100 ? 100 : h,
+        resizeMode: 'cover',
+        borderRadius: 15 - 4,
       }}
-    >
-      {isMe && (
-        <Time
-          time={faker.date.recent().toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          })}
-        />
-      )}
-      <TouchableOpacity
-        activeOpacity={isMe ? 0.9 : 0.6}
-        style={{
-          backgroundColor: isMe ? theme.colors.primary : theme.colors.elevation.level5,
-          borderRadius: 15,
-          padding: 5,
-          maxWidth: '70%',
-        }}
-      >
-        <Card.Cover style={{}} source={{ uri: image }} />
-        <Text
-          style={{
-            color: isMe ? theme.colors.onPrimary : theme.colors.onBackground,
-            fontSize: 15.5,
-            paddingHorizontal: 10,
-            paddingVertical: 5,
-          }}
-        >
-          {message}
-        </Text>
-      </TouchableOpacity>
-      {!isMe && (
-        <Time
-          time={faker.date.recent().toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          })}
-        />
-      )}
-    </View>
+    />
   )
 }
 
