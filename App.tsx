@@ -4,12 +4,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Appearance, StatusBar } from 'react-native'
 import { PaperProvider, useTheme } from 'react-native-paper'
 import { enableScreens } from 'react-native-screens'
-import Chat from './screens/Chat'
-import Home from './screens/Home'
-import Update from './screens/Update'
+
+import { useEffect, useState } from 'react'
+import Chat from './src/screens/Chat'
+import Home from './src/screens/Tabs/Home/Home'
+import Update from './src/screens/Update'
 import { DarkTheme } from './theme/DarkTheme'
 import { LightTheme } from './theme/LightTheme'
-import { useEffect, useState } from 'react'
 
 enableScreens()
 

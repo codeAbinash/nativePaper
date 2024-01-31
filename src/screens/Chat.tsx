@@ -10,8 +10,8 @@ function pxToDp(px: number) {
   return PixelRatio.roundToNearestPixel(px)
 }
 
-const wallpaper = require('../assets/wallpaper.png')
-const wallpaper_dark = require('../assets/wallpaper-dark.png')
+const wallpaper = require('../../assets/wallpaper.png')
+const wallpaper_dark = require('../../assets/wallpaper-dark.png')
 
 const BOTTOM_APPBAR_HEIGHT = 62
 

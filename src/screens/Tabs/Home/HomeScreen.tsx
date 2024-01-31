@@ -4,11 +4,13 @@ import { Dimensions, ScrollView, Text, View } from 'react-native'
 import { Appbar, Avatar, FAB, Tooltip, TouchableRipple, useTheme } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EndText from '../../EndText'
+import BottomSheetModal from '../../../components/BottomSheetModal'
 
 const { width, height } = Dimensions.get('window')
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
   const theme = useTheme()
+
   return (
     <>
       <Appbar.Header>
@@ -36,7 +38,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             <Chat key={item} value={item} navigation={navigation} />
           ))}
         </View>
-
         <EndText />
       </ScrollView>
       <FAB icon='message-text' style={{ position: 'absolute', margin: 20, right: 0, bottom: 0 }} onPress={() => console.log('Pressed')} />

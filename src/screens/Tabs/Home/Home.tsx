@@ -3,9 +3,9 @@ import { CommonActions } from '@react-navigation/native'
 import React from 'react'
 import { BottomNavigation } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import Calls from './Tabs/Home/Calls'
-import HomeScreen from './Tabs/Home/HomeScreen'
-import Updates from './Tabs/Home/Updates'
+import Calls from './Calls'
+import HomeScreen from './HomeScreen'
+import Updates from './Updates'
 
 const Tab = createBottomTabNavigator()
 
