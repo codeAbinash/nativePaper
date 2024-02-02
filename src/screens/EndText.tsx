@@ -3,15 +3,25 @@ import { TouchableOpacity, View } from 'react-native'
 import { Button, Divider, Text, useTheme } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import BottomSheetModal from '../components/BottomSheetModal'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function EndText() {
   const theme = useTheme()
   const [visible, setVisible] = React.useState(false)
+  const bottom = useSafeAreaInsets().bottom
 
   return (
     <>
       <BottomSheetModal visible={visible} onDismiss={() => {}} closeFn={() => setVisible(false)}>
-        <View style={{ backgroundColor: theme.colors.elevation.level1, borderTopRightRadius: 35, borderTopLeftRadius: 35, paddingTop: 12 }}>
+        <View
+          style={{
+            backgroundColor: theme.colors.elevation.level1,
+            borderTopRightRadius: 35,
+            borderTopLeftRadius: 35,
+            paddingTop: 12,
+            paddingBottom: bottom,
+          }}
+        >
           <View
             style={{ height: 5, width: '20%', backgroundColor: theme.colors.surfaceVariant, borderRadius: 100, alignSelf: 'center', marginTop: 5 }}
           ></View>
@@ -43,7 +53,7 @@ export default function EndText() {
             >
               Your text and calls are private
             </Text>
-            <Text style={{ fontSize: 15, textAlign: 'center', marginTop: 15, color: theme.colors.onSurfaceVariant, lineHeight: 20 }}>
+            <Text style={{ fontSize: 15, textAlign: 'center', marginTop: 15, color: theme.colors.outline, lineHeight: 20 }}>
               End-to-end encryption keeps your personal messages and calls between you and the people you choose. Not even WhatsApp can read or listen
               to them. This includes your:
             </Text>
@@ -58,7 +68,7 @@ export default function EndText() {
               onPress={() => {
                 setVisible(false)
               }}
-              style={{ marginTop: 35, marginBottom: 10 }}
+              style={{ marginTop: 35 }}
               mode='contained'
             >
               Learn more
@@ -91,8 +101,8 @@ function ContentType({ text, icon }: { text: string; icon: string }) {
   const theme = useTheme()
   return (
     <View style={{ flexDirection: 'row', gap: 15, alignItems: 'center', justifyContent: 'flex-start' }}>
-      <Icon name={icon} color={theme.colors.onSurfaceVariant} size={18} />
-      <Text style={{ fontSize: 15, color: theme.colors.onSurfaceVariant }}>{text}</Text>
+      <Icon name={icon} color={theme.colors.outline} size={18} />
+      <Text style={{ fontSize: 15, color: theme.colors.outline }}>{text}</Text>
     </View>
   )
 }

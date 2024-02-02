@@ -61,13 +61,13 @@ const BottomSheet = ({
 
   const backgroundColor = panY.interpolate({
     inputRange: [0, screenHeight],
-    outputRange: ['rgba(0,0,0,0.1)', 'rgba(0,0,0,0)'],
+    outputRange: ['rgba(0,0,0,0.25)', 'rgba(0,0,0,0)'],
   })
 
   return (
     <Modal animated animationType='fade' visible={visible} transparent onRequestClose={dismissFunc} hardwareAccelerated statusBarTranslucent>
       <Animated.View style={[styles.overlay, { backgroundColor }]}>
-        <Animated.View style={[styles.container, { top, backgroundColor: theme.colors.surface }]} {...panResponders.panHandlers}>
+        <Animated.View style={[styles.container, { top, backgroundColor: 'transparent' }]} {...panResponders.panHandlers}>
           {children}
         </Animated.View>
       </Animated.View>
