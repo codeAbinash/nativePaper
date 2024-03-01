@@ -1,9 +1,9 @@
 import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
-import { Button, Divider, Text, useTheme } from 'react-native-paper'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import BottomSheetModal from '../components/BottomSheetModal'
+import { Button, Text, useTheme } from 'react-native-paper'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import BottomSheet from '../components/BottomSheetModal'
 
 export default function EndText() {
   const theme = useTheme()
@@ -12,7 +12,7 @@ export default function EndText() {
 
   return (
     <>
-      <BottomSheetModal visible={visible} onDismiss={() => {}} closeFn={() => setVisible(false)}>
+      <BottomSheet visible={visible} onDismiss={() => {}} closeFn={() => setVisible(false)}>
         <View
           style={{
             backgroundColor: theme.colors.elevation.level1,
@@ -75,7 +75,7 @@ export default function EndText() {
             </Button>
           </View>
         </View>
-      </BottomSheetModal>
+      </BottomSheet>
       <View
         style={{
           paddingBottom: 100,
