@@ -1,1 +1,1 @@
-![alt text](media/image.jpg)
+![NativePaper](media/image.jpg)
